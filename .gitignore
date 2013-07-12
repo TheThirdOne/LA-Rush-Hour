@@ -24,3 +24,4 @@ libs/
 lib/
 *.prefs
 war/
+gwt-unitCache
