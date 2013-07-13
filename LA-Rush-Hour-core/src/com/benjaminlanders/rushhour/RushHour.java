@@ -22,7 +22,7 @@ public class RushHour implements ApplicationListener {
 		h = Gdx.graphics.getHeight();
 		batch = new SpriteBatch();
 		
-		Texture cartex = new Texture(Gdx.files.internal("data/libgdx.png"));
+		Texture cartex = new Texture(Gdx.files.internal("data/car.png"));
 		Texture attex = new Texture(Gdx.files.internal("data/nightday.png"));
 		car = new TextureRegion(cartex, 0, 0, 512, 256);
 		day = new TextureRegion(attex,0,0,512,512);
@@ -42,7 +42,7 @@ public class RushHour implements ApplicationListener {
 		time+=Gdx.graphics.getDeltaTime();
 		//batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-
+		
 		batch.draw(day,0,w - ((time*50 + w)% (int)(w*2)) , w, w);
 		batch.draw(night,0,w - ((time*50) % (int)(w*2)) , w, w);
 
