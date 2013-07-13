@@ -11,45 +11,42 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class RushHour implements ApplicationListener {
-	private OrthographicCamera camera;
 	private SpriteBatch batch;
-	private Texture texture;
-	private Sprite sprite;
-	float w, h;
+	private TextureRegion car, night, day;
+	
+	float w, h, time;
 	
 	@Override
 	public void create() {		
 		w = Gdx.graphics.getWidth();
 		h = Gdx.graphics.getHeight();
-		
-		//camera = new OrthographicCamera(1, h/w);
 		batch = new SpriteBatch();
 		
-		texture = new Texture(Gdx.files.internal("data/libgdx.png"));
-		//texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		Texture cartex = new Texture(Gdx.files.internal("data/libgdx.png"));
+		Texture attex = new Texture(Gdx.files.internal("data/nightday.png"));
+		car = new TextureRegion(cartex, 0, 0, 512, 256);
+		day = new TextureRegion(attex,0,0,512,512);
+		night =  new TextureRegion(attex,0,512,512,512);
 		
-		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275);
-		
-		//sprite = new Sprite(region);
-		//sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
-		//sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
-		//sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
 	}
 
 	@Override
 	public void dispose() {
 		batch.dispose();
-		texture.dispose();
 	}
 
 	@Override
 	public void render() {		
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		
+		time+=Gdx.graphics.getDeltaTime();
 		//batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		batch.draw(texture,0, 0, w, h,0, 0, 512, 256, false, false);
+
+		batch.draw(day,0,w - ((time*50 + w)% (int)(w*2)) , w, w);
+		batch.draw(night,0,w - ((time*50) % (int)(w*2)) , w, w);
+
+		batch.draw(car,0, 0, w, h);
 		batch.end();
 	}
 
