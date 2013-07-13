@@ -8,8 +8,8 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "LA-Rush-Hour";
 		cfg.useGL20 = false;
-		cfg.width = 480;
-		cfg.height = 320;
+		cfg.width = 512;
+		cfg.height = 256;
 		
 		new LwjglApplication(new RushHour(), cfg);
 	}
