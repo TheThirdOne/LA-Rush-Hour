@@ -1,0 +1,4 @@
+d:war/
+d:data
+i:data/car.png
+i:data/nightday.png
